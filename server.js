@@ -1,8 +1,9 @@
 const express = require('express'); 
+const cors = require('cors'); 
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-// Sample data for classes
+// data
 const classes = [
         {
             "_id": 1,
@@ -347,17 +348,17 @@ const classes = [
         }
 ];
 
-// Root route to test server
+// testing server
 app.get("/", (req, res) => {
     res.send("Server is running!");
 });
 
-// Route to get classes data
+// getting class data
 app.get("/api/classes", (req, res) => {
     res.send(classes);
 });
 
-// Start server
+// starting server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
