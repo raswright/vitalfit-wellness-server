@@ -1,0 +1,90 @@
+/* general styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8f9; 
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* header styling */
+header {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 2px solid #62627f; 
+}
+
+header h1 {
+    font-size: 2em;
+    color: #2c3e50; 
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.1em;
+    color: #333;
+}
+
+/* endpoint styling */
+.endpoints h2 {
+    font-size: 1.5em;
+    color: white
+    margin-bottom 10px;
+    text-align: center;
+}
+
+.endpoints ul {
+    list-style: none;
+    padding: 0;
+}
+
+.endpoints li {
+    background-color: #e8f8f5; 
+    border: 1px solid #d1e7dd;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.endpoints a {
+    color: #2c3e50;
+    font-weight: bold;
+    font-size: 1.1em;
+    text-decoration: none;
+}
+
+.endpoints a:hover {
+    color: #2c3e50;
+}
+
+.endpoints p {
+    font-size: 0.9em;
+    color: #555;
+    margin-top: 5px;
+}
+
+/* footer styling */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #888;
+}
+
+footer p {
+    color: #aaa;
+}
