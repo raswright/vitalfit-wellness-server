@@ -104,7 +104,7 @@ const classes = [
             "availability": "14/15 slots available",
             "location": "Room B",
             "status": "Open",
-            "img_name": "pilates4-class.jpg",
+            "img_name": "pilates4.jpg",
             "extra_info": ["Focus on core strength", "No equipment needed", "Bring a hand towel"]
         },
         {
@@ -115,7 +115,7 @@ const classes = [
             "availability": "23/25 slots available",
             "location": "Room B",
             "status": "Open",
-            "img_name": "pilates6-class.jpg",
+            "img_name": "pilates5.jpg",
             "extra_info": ["Focus on core strength", "No equipment needed", "Bring a hand towel"]
         },
         {
@@ -126,7 +126,7 @@ const classes = [
             "availability": "15/20 slots available",
             "location": "Room C",
             "status": "Open",
-            "img_name": "running-class2.jpg",
+            "img_name": "running1.jpg",
             "extra_info": ["Outdoor activity", "Running shoes required", "Feel free to bring headphones/airpods"]
         },
         {
@@ -137,7 +137,7 @@ const classes = [
             "availability": "22/25 slots available",
             "location": "Room C",
             "status": "Open",
-            "img_name": "running-class3.jpg",
+            "img_name": "running2.jpg",
             "extra_info": ["Outdoor activity", "Running shoes required", "Feel free to bring headphones/airpods"]
         },
         {
@@ -148,7 +148,7 @@ const classes = [
             "availability": "13/15 slots available",
             "location": "Room C",
             "status": "Open",
-            "img_name": "running-class4.jpg",
+            "img_name": "running3.jpg",
             "extra_info": ["Outdoor activity", "Running shoes required", "Feel free to bring headphones/airpods"]
         },
         {
@@ -159,7 +159,7 @@ const classes = [
             "availability": "12/25 slots available",
             "location": "Room C",
             "status": "Open",
-            "img_name": "running-class5.jpg",
+            "img_name": "running4.jpg",
             "extra_info": ["Outdoor activity", "Running shoes required", "Feel free to bring headphones/airpods"]
         },
         {
@@ -170,7 +170,7 @@ const classes = [
             "availability": "17/25 slots available",
             "location": "Room C",
             "status": "Open",
-            "img_name": "running-class6.jpg",
+            "img_name": "running5.jpg",
             "extra_info": ["Outdoor activity", "Running shoes required", "Feel free to bring headphones/airpods"]
         },
         {
@@ -181,7 +181,7 @@ const classes = [
             "availability": "14/20 slots available",
             "location": "Room D",
             "status": "Open",
-            "img_name": "cycling-class1.jpg",
+            "img_name": "cycling1.jpg",
             "extra_info": ["Indoor cycling", "Water bottle recommended", "Bring gloves"]
         },
         {
@@ -192,7 +192,7 @@ const classes = [
             "availability": "14/25 slots available",
             "location": "Room D",
             "status": "Open",
-            "img_name": "cycling-class2.jpg",
+            "img_name": "cycling2.jpg",
             "extra_info": ["Indoor cycling", "Water bottle recommended", "Bring gloves"]
         },
         {
@@ -203,7 +203,7 @@ const classes = [
             "availability": "11/15 slots available",
             "location": "Room D",
             "status": "Open",
-            "img_name": "cycling-class3.jpg",
+            "img_name": "cycling3.jpg",
             "extra_info": ["Indoor cycling", "Water bottle recommended", "Bring gloves"]
         },
         {
@@ -214,7 +214,7 @@ const classes = [
             "availability": "18/20 slots available",
             "location": "Room D",
             "status": "Open",
-            "img_name": "cycling-class4.jpg",
+            "img_name": "cycling4.jpg",
             "extra_info": ["Indoor cycling", "Water bottle recommended", "Bring gloves"]
         },
         {
@@ -225,7 +225,7 @@ const classes = [
             "availability": "17/25 slots available",
             "location": "Room D",
             "status": "Open",
-            "img_name": "cycling-class5.jpg",
+            "img_name": "cycling5.jpg",
             "extra_info": ["Indoor cycling", "Water bottle recommended", "Bring gloves"]
         },
         {
@@ -236,7 +236,7 @@ const classes = [
             "availability": "12/15 slots available",
             "location": "Room D",
             "status": "Open",
-            "img_name": "cycling-class6.jpg",
+            "img_name": "cycling6.jpg",
             "extra_info": ["Indoor cycling", "Water bottle recommended", "Bring gloves"]
         },
         {
@@ -247,7 +247,7 @@ const classes = [
             "availability": "14/15 slots available",
             "location": "Room E",
             "status": "Open",
-            "img_name": "zumba-class1.jpg",
+            "img_name": "zumba1.jpg",
             "extra_info": ["Dance-based workout", "Fun atmosphere", "Bring a hand towel"]
         },
         {
@@ -258,7 +258,7 @@ const classes = [
             "availability": "13/15 slots available",
             "location": "Room E",
             "status": "Open",
-            "img_name": "zumba-class2.jpg",
+            "img_name": "zumba2.jpg",
             "extra_info": ["Dance-based workout", "Fun atmosphere", "Bring a hand towel"]
         },
         {
@@ -269,7 +269,7 @@ const classes = [
             "availability": "6/15 slots available",
             "location": "Room E",
             "status": "Open",
-            "img_name": "zumba-class5.jpg",
+            "img_name": "zumba3.jpg",
             "extra_info": ["Dance-based workout", "Fun atmosphere", "Bring a hand towel"]
         },
         {
@@ -280,7 +280,7 @@ const classes = [
             "availability": "10/15 slots available",
             "location": "Room E",
             "status": "Open",
-            "img_name": "zumba-class6.jpg",
+            "img_name": "zumba4.jpg",
             "extra_info": ["Dance-based workout", "Fun atmosphere", "Bring a hand towel"]
         },
         {
@@ -291,7 +291,7 @@ const classes = [
             "availability": "11/15 slots available",
             "location": "Room F",
             "status": "Open",
-            "img_name": "bodypump-class1.jpg",
+            "img_name": "bodypump1.jpg",
             "extra_info": ["Weights included", "Strength-based", "Bring a water bottle"]
         },
         {
@@ -302,7 +302,7 @@ const classes = [
             "availability": "18/20 slots available",
             "location": "Room F",
             "status": "Open",
-            "img_name": "bodypump-class2.jpg",
+            "img_name": "bodypump2.jpg",
             "extra_info": ["Weights included", "Strength-based", "Bring a water bottle"]
         },
         {
@@ -313,7 +313,7 @@ const classes = [
             "availability": "20/25 slots available",
             "location": "Room F",
             "status": "Open",
-            "img_name": "bodypump-class3.jpg",
+            "img_name": "bodypump3.jpg",
             "extra_info": ["Weights included", "Strength-based", "Bring a water bottle"]
         },
         {
@@ -324,7 +324,7 @@ const classes = [
             "availability": "14/15 slots available",
             "location": "Room F",
             "status": "Open",
-            "img_name": "bodypump-class4.jpg",
+            "img_name": "bodypump4.jpg",
             "extra_info": ["Weights included", "Strength-based", "Bring a water bottle"]
         },
         {
@@ -335,7 +335,7 @@ const classes = [
             "availability": "15/20 slots available",
             "location": "Room F",
             "status": "Open",
-            "img_name": "bodypump-class5.jpg",
+            "img_name": "bodypump5.jpg",
             "extra_info": ["Weights included", "Strength-based", "Bring a water bottle"]
         },
         {
@@ -346,7 +346,7 @@ const classes = [
             "availability": "7/15 slots available",
             "location": "Room F",
             "status": "Open",
-            "img_name": "bodypump-class6.jpg",
+            "img_name": "bodypump6.jpg",
             "extra_info": ["Weights included", "Strength-based", "Bring a water bottle"]
         }
 ];
