@@ -354,7 +354,7 @@ const classes = [
     }
 ];
 
-// array to store class suggestions
+// Array storing class suggestions
 const classSuggestions = [
     {
       id: "a1b2c3d4",
