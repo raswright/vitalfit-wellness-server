@@ -1,15 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 const Joi = require('joi'); 
-const { v4: uuidv4 } = require('uuid'); 
+const { v4: uuidv4 } = require('uuid');
 const app = express();
 const PORT = process.env.PORT || 4000;
 
 app.use(cors());
-app.use(express.static('public'));
 app.use(express.json()); 
 
-// In-memory data storage
+// schedule data (classes)
 const classes = [
     {
         "_id": 1,
@@ -354,15 +353,42 @@ const classes = [
     }
 ];
 
-const classSuggestions = []; // Array to store user-submitted class suggestions
+// array to store class suggestions
+const classSuggestions = [
+    {
+      id: "a1b2c3d4",
+      classType: "Yoga",
+      customClassType: "",
+      preferredDayTime: "Monday 5 PM",
+      groupType: "One-on-One",
+      instructorPreference: "Female",
+      comments: "Excited to join!",
+    },
+    {
+      id: "e5f6g7h8",
+      classType: "Other",
+      customClassType: "Dance",
+      preferredDayTime: "Wednesday 7 PM",
+      groupType: "Group",
+      instructorPreference: "Male",
+      comments: "Love dancing!",
+    },
+  ];
 
-// Validation schema for class suggestions
+// Joi validation schema
 const suggestionSchema = Joi.object({
-  className: Joi.string().optional(),
   classType: Joi.string().required().messages({
     'string.empty': 'Class Type is required.',
   }),
-  customClassType: Joi.string().optional(),
+  customClassType: Joi.string()
+    .allow('')
+    .when('classType', {
+      is: 'Other',
+      then: Joi.string().required().messages({
+        'string.empty': 'Please specify the class type when "Other" is selected.',
+      }),
+      otherwise: Joi.forbidden(),
+    }),
   preferredDayTime: Joi.string().required().messages({
     'string.empty': 'Preferred Day/Time is required.',
   }),
@@ -370,46 +396,48 @@ const suggestionSchema = Joi.object({
     'any.only': 'Group Type must be either "One-on-One" or "Group".',
   }),
   instructorPreference: Joi.string()
-    .valid('Any', 'Female', 'Male')
     .required()
+    .valid('Any', 'Female', 'Male')
     .messages({
       'any.only': 'Instructor Preference must be "Any", "Female", or "Male".',
     }),
-  specificInstructor: Joi.string().optional(),
-  comments: Joi.string().optional(),
+  comments: Joi.string().allow(''),
 });
 
-// testing server
-app.get("/", (req, res) => {
-  res.send("Server is running!");
+
+// test server
+app.get('/', (req, res) => {
+  res.send('Server is running!');
 });
 
-// get existing class data
-app.get("/api/classes", (req, res) => {
+// GET endpoint for schedule data
+app.get('/api/classes', (req, res) => {
   res.json(classes);
 });
 
-// get class suggestions
-app.get("/api/class-suggestions", (req, res) => {
+// GET endpoint for submitted class suggestions
+app.get('/api/class-suggestions', (req, res) => {
   res.json(classSuggestions);
 });
 
-// handle new class suggestions (post request)
-app.post("/api/classes", (req, res) => {
+// POST endpoint to add new class suggestions
+app.post('/api/class-suggestions', (req, res) => {
   const { error } = suggestionSchema.validate(req.body);
 
   if (error) {
     return res.status(400).json({ message: error.details[0].message });
   }
 
-  // new suggestion to the array
   const newSuggestion = {
-    id: uuidv4(), // unique id
+    id: uuidv4(),
     ...req.body,
   };
 
   classSuggestions.push(newSuggestion);
-  res.status(201).json({ message: "Class suggestion submitted successfully!", class: newSuggestion });
+  res.status(201).json({
+    message: 'Class suggestion submitted successfully!',
+    class: newSuggestion,
+  });
 });
 
 // start server
