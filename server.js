@@ -377,7 +377,6 @@ const classSuggestions = [
   ];
 
 // Joi Validation Schema 
-
 const suggestionSchema = Joi.object({
   classType: Joi.string().required().messages({ 'string.empty': 'Class Type is required.' }),
   customClassType: Joi.string()
@@ -402,17 +401,17 @@ app.get('/', (req, res) => {
   res.send('Server is running!');
 });
 
-// GET: Schedule Data 
+// get - schedule Data 
 app.get('/api/classes', (req, res) => {
   res.json(classes);
 });
 
-// GET: All Suggestions
+// get - all suggestions
 app.get('/api/class-suggestions', (req, res) => {
   res.json(classSuggestions);
 });
 
-// POST: Add New Suggestion
+// post - add new suggestion
 app.post('/api/class-suggestions', (req, res) => {
   const { error } = suggestionSchema.validate(req.body);
 
@@ -429,7 +428,7 @@ app.post('/api/class-suggestions', (req, res) => {
   });
 });
 
-// PUT: Update Suggestion
+// put - update suggestion
 app.put('/api/class-suggestions/:id', (req, res) => {
   const { id } = req.params;
   const { error } = suggestionSchema.validate(req.body);
@@ -445,7 +444,7 @@ app.put('/api/class-suggestions/:id', (req, res) => {
   res.status(200).json({ message: 'Class suggestion updated successfully!', suggestion: classSuggestions[index] });
 });
 
-// DELETE: Remove Suggestion
+// delete - remove Suggestion
 app.delete('/api/class-suggestions/:id', (req, res) => {
   const { id } = req.params;
   const index = classSuggestions.findIndex((item) => item.id === id);
