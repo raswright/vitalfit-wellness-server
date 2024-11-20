@@ -376,7 +376,8 @@ const classSuggestions = [
     },
   ];
 
-// Joi Validation Schema
+// Joi Validation Schema 
+
 const suggestionSchema = Joi.object({
   classType: Joi.string().required().messages({ 'string.empty': 'Class Type is required.' }),
   customClassType: Joi.string()
