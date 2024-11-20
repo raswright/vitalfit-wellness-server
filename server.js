@@ -379,11 +379,13 @@ const classSuggestions = [
 // Joi Validation Schema
 const suggestionSchema = Joi.object({
   classType: Joi.string().required().messages({ 'string.empty': 'Class Type is required.' }),
-  customClassType: Joi.string().allow('').when('classType', {
-    is: 'Other',
-    then: Joi.string().required().messages({ 'string.empty': 'Please specify the class type.' }),
-    otherwise: Joi.forbidden(),
-  }),
+  customClassType: Joi.string()
+    .allow('')
+    .when('classType', {
+      is: 'Other',
+      then: Joi.string().required().messages({ 'string.empty': 'Please specify the class type.' }),
+      otherwise: Joi.forbidden(),
+    }),
   preferredDayTime: Joi.string().required().messages({ 'string.empty': 'Preferred Day/Time is required.' }),
   groupType: Joi.string().required().valid('One-on-One', 'Group').messages({
     'any.only': 'Group Type must be "One-on-One" or "Group".',
