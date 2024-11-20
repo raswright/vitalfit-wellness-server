@@ -376,52 +376,40 @@ const classSuggestions = [
     },
   ];
 
-// Joi validation schema
+// Joi Validation Schema
 const suggestionSchema = Joi.object({
-  classType: Joi.string().required().messages({
-    'string.empty': 'Class Type is required.',
+  classType: Joi.string().required().messages({ 'string.empty': 'Class Type is required.' }),
+  customClassType: Joi.string().allow('').when('classType', {
+    is: 'Other',
+    then: Joi.string().required().messages({ 'string.empty': 'Please specify the class type.' }),
+    otherwise: Joi.forbidden(),
   }),
-  customClassType: Joi.string()
-    .allow('')
-    .when('classType', {
-      is: 'Other',
-      then: Joi.string().required().messages({
-        'string.empty': 'Please specify the class type when "Other" is selected.',
-      }),
-      otherwise: Joi.forbidden(),
-    }),
-  preferredDayTime: Joi.string().required().messages({
-    'string.empty': 'Preferred Day/Time is required.',
-  }),
+  preferredDayTime: Joi.string().required().messages({ 'string.empty': 'Preferred Day/Time is required.' }),
   groupType: Joi.string().required().valid('One-on-One', 'Group').messages({
-    'any.only': 'Group Type must be either "One-on-One" or "Group".',
+    'any.only': 'Group Type must be "One-on-One" or "Group".',
   }),
-  instructorPreference: Joi.string()
-    .required()
-    .valid('Any', 'Female', 'Male')
-    .messages({
-      'any.only': 'Instructor Preference must be "Any", "Female", or "Male".',
-    }),
+  instructorPreference: Joi.string().required().valid('Any', 'Female', 'Male').messages({
+    'any.only': 'Instructor Preference must be "Any", "Female", or "Male".',
+  }),
   comments: Joi.string().allow(''),
 });
 
-
-// test server
+// test Server
 app.get('/', (req, res) => {
   res.send('Server is running!');
 });
 
-// GET endpoint for schedule data
+// GET: Schedule Data 
 app.get('/api/classes', (req, res) => {
   res.json(classes);
 });
 
-// GET endpoint for submitted class suggestions
+// GET: All Suggestions
 app.get('/api/class-suggestions', (req, res) => {
   res.json(classSuggestions);
 });
 
-// POST endpoint to add new class suggestions
+// POST: Add New Suggestion
 app.post('/api/class-suggestions', (req, res) => {
   const { error } = suggestionSchema.validate(req.body);
 
@@ -429,16 +417,39 @@ app.post('/api/class-suggestions', (req, res) => {
     return res.status(400).json({ message: error.details[0].message });
   }
 
-  const newSuggestion = {
-    id: uuidv4(),
-    ...req.body,
-  };
-
+  const newSuggestion = { id: uuidv4(), ...req.body };
   classSuggestions.push(newSuggestion);
+
   res.status(201).json({
     message: 'Class suggestion submitted successfully!',
-    class: newSuggestion,
+    suggestion: newSuggestion,
   });
+});
+
+// PUT: Update Suggestion
+app.put('/api/class-suggestions/:id', (req, res) => {
+  const { id } = req.params;
+  const { error } = suggestionSchema.validate(req.body);
+
+  if (error) {
+    return res.status(400).json({ message: error.details[0].message });
+  }
+
+  const index = classSuggestions.findIndex((item) => item.id === id);
+  if (index === -1) return res.status(404).json({ message: 'Item not found.' });
+
+  classSuggestions[index] = { ...classSuggestions[index], ...req.body }; 
+  res.status(200).json({ message: 'Class suggestion updated successfully!', suggestion: classSuggestions[index] });
+});
+
+// DELETE: Remove Suggestion
+app.delete('/api/class-suggestions/:id', (req, res) => {
+  const { id } = req.params;
+  const index = classSuggestions.findIndex((item) => item.id === id);
+  if (index === -1) return res.status(404).json({ message: 'Item not found.' });
+
+  classSuggestions.splice(index, 1);
+  res.status(200).json({ message: 'Class suggestion deleted successfully!' });
 });
 
 // start server
