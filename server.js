@@ -109,13 +109,18 @@ app.post('/api/class-suggestions', upload.single('img_name'), async (req, res) =
 // PUT: Update an Existing Suggestion
 app.put('/api/class-suggestions/:id', upload.single('img_name'), async (req, res) => {
   const { id } = req.params;
-  const { error } = suggestionSchema.validate(req.body);
+
+  // Remove `_id` from the body if it exists
+  const { _id, ...updateData } = req.body;
+
+  // Validate the remaining data
+  const { error } = suggestionSchema.validate(updateData);
   if (error) return res.status(400).json({ message: error.details[0].message });
 
   try {
     const updatedSuggestion = await ClassSuggestion.findByIdAndUpdate(
       id,
-      { ...req.body, img_name: req.file ? req.file.filename : req.body.img_name },
+      { ...updateData, img_name: req.file ? req.file.filename : req.body.img_name },
       { new: true }
     );
     if (!updatedSuggestion) return res.status(404).json({ message: 'Suggestion not found' });
