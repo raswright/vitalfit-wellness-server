@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 4000;
 
 // MongoDB Connection
 mongoose
-  .connect('mongodb+srv://<username>:<password>@raswright.03gl0.mongodb.net/<database-name>?retryWrites=true&w=majority', {
+  .connect('mongodb+srv://gKSMF0kDA8xi85QL:gKSMF0kDA8xi85QL@raswright.03gl0.mongodb.net/?retryWrites=true&w=majority&appName=raswright', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
