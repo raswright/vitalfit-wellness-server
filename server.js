@@ -15,19 +15,18 @@ mongoose
   .then(() => console.log('Connected to MongoDB'))
   .catch((error) => console.error('Failed to connect to MongoDB', error));
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
-// Multer configuration for image uploads
+// multer 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, './public/images/'),
   filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`),
 });
 const upload = multer({ storage });
 
-// Schemas and Models
+// schemas & models
 const ClassSchema = new mongoose.Schema({
   class_name: { type: String, required: true },
   confirmation_number: { type: String, required: true },
@@ -66,10 +65,10 @@ const suggestionSchema = Joi.object({
   comments: Joi.string().allow(''),
 });
 
-// Routes
+// routes
 app.get('/', (req, res) => res.send('Server is running!'));
 
-// GET: Retrieve All Classes
+// GET: retrieve classes
 app.get('/api/classes', async (req, res) => {
   try {
     const classes = await Class.find();
@@ -79,7 +78,7 @@ app.get('/api/classes', async (req, res) => {
   }
 });
 
-// GET: Retrieve All Suggestions
+// GET: retrieve suggestions
 app.get('/api/class-suggestions', async (req, res) => {
   try {
     const suggestions = await ClassSuggestion.find();
@@ -89,7 +88,7 @@ app.get('/api/class-suggestions', async (req, res) => {
   }
 });
 
-// POST: Add a New Suggestion with Image
+// POST: add a new Suggestion with image
 app.post('/api/class-suggestions', upload.single('img_name'), async (req, res) => {
   const { error } = suggestionSchema.validate(req.body);
   if (error) return res.status(400).json({ message: error.details[0].message });
@@ -106,7 +105,7 @@ app.post('/api/class-suggestions', upload.single('img_name'), async (req, res) =
   }
 });
 
-// PUT: Update an Existing Suggestion
+// PUT: update an existing suggestion
 app.put('/api/class-suggestions/:id', upload.single('img_name'), async (req, res) => {
   const { id } = req.params;
   const { error } = suggestionSchema.validate(req.body);
@@ -125,7 +124,7 @@ app.put('/api/class-suggestions/:id', upload.single('img_name'), async (req, res
   }
 });
 
-// DELETE: Remove a Suggestion
+// DELETE: remove a suggestion
 app.delete('/api/class-suggestions/:id', async (req, res) => {
   try {
     const deletedSuggestion = await ClassSuggestion.findByIdAndDelete(req.params.id);
@@ -136,5 +135,5 @@ app.delete('/api/class-suggestions/:id', async (req, res) => {
   }
 });
 
-// Start Server
+// start server
 app.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}`));
